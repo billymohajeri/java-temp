@@ -21,27 +21,32 @@ public class Main {
                 System.out.println(RED + "Invalid input.");
                 continue;
             }
-            int degree = Integer.parseInt(splitInput[0]);
+
+            int degree = 0;
             String unit = splitInput[1].toUpperCase();
+
+            try {
+                degree = Integer.parseInt(splitInput[0]);
+            } catch (Exception e) {
+                System.out.println(RED + "Invalid input. " + e.getMessage() + RESET);
+                continue;
+            }
+
             switch (unit) {
-                case "C" ->
-                        System.out.printf(GREEN + "%s = %.2f F %n", userInput, celsiusToFahrenheitConvert(degree, unit));
-
-                case "F" ->
-                        System.out.printf(GREEN + "%s = %.2f C %n", userInput, fahrenheitToCelsiusConvert(degree, unit));
-
+                case "C" -> System.out.printf(GREEN + "%s = %.2f F %n", userInput, celsiusToFahrenheitConvert(degree));
+                case "F" -> System.out.printf(GREEN + "%s = %.2f C %n", userInput, fahrenheitToCelsiusConvert(degree));
                 default -> System.out.println(RED + "Invalid input. Only 'C' or 'F' (case-insensitive) are accepted.");
             }
         }
     }
 
-    public static double celsiusToFahrenheitConvert(int degree, String unit) {
+    public static double celsiusToFahrenheitConvert(int degree) {
         double converted;
         converted = ((double) (degree * 9) / 5) + 32;
         return converted;
     }
 
-    public static double fahrenheitToCelsiusConvert(int degree, String unit) {
+    public static double fahrenheitToCelsiusConvert(int degree) {
         double converted;
         converted = (double) ((degree - 32) * 5) / 9;
         return converted;
