@@ -5,15 +5,16 @@ public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     String userInput = "";
+    String YELLOW = "\033[0;33m";
+
     while (!userInput.equals("EXIT")) {
       String RESET = "\033[0m";
       String RED = "\033[0;31m";
-      String GREEN = "\033[0;32m";
-      System.out.printf(RESET + "%nPlease enter a temperature value and its unit of measurement (F or C): ");
+      System.out.println(RESET + "\nPlease enter a temperature value and its unit of measurement (F or C): ");
       userInput = scanner.nextLine();
       userInput = userInput.toUpperCase().trim();
       if (userInput.equals("EXIT")) {
-        System.out.println(GREEN + "Exiting the program. Thanks!" + RESET);
+        System.out.println(YELLOW + "Exiting the program. Thanks!" + RESET);
         break;
       }
       String[] splitInput = userInput.split(" ", 2);
@@ -33,8 +34,8 @@ public class Main {
       }
 
       switch (unit) {
-        case "C" -> System.out.printf(GREEN + "%s = %.2f F %n", userInput, celsiusToFahrenheitConvert(degree));
-        case "F" -> System.out.printf(GREEN + "%s = %.2f C %n", userInput, fahrenheitToCelsiusConvert(degree));
+        case "C" -> System.out.printf(YELLOW + "%s = %.2f F %n", userInput, celsiusToFahrenheitConvert(degree));
+        case "F" -> System.out.printf(YELLOW + "%s = %.2f C %n", userInput, fahrenheitToCelsiusConvert(degree));
         default -> System.out.println(RED + "Invalid input. Only 'C' or 'F' (case-insensitive) are accepted.");
       }
     }
